@@ -5,6 +5,7 @@ const works = await reponse.json();
 function genererWorks(works) {
   // Récupération de l'élément du DOM qui accueillera les gallery
   const sectionGallery = document.querySelector(".gallery");
+  sectionGallery.innerHTML = "";
   for (let i = 0; i < works.length; i++) {
     const article = works[i];
     // Création d’une balise dédiée à une pièce automobile
@@ -26,3 +27,33 @@ function genererWorks(works) {
 }
 
 genererWorks(works);
+
+//Gestion des boutons filtres
+
+// const boutonFiltrer = document.querySelector(".Objets");
+// boutonFiltrer.addEventListener("click", function () {
+//   const worksFiltrees = works.filter(function (works) {
+//     return works.categoryId === 1;
+//   });
+//   document.querySelector(".gallery").innerHTML = "";
+//   genererWorks(worksFiltrees);
+// });
+
+document.querySelectorAll(".btn-filter").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const categories = btn.classList;
+    let categorie = null;
+    categories.forEach((c) => {
+      if (c !== "btn-filter") {
+        categorie = c;
+      }
+    });
+    let filtered;
+    if (categorie === "all") {
+      filtered = works;
+    } else {
+      filtered = works.filter((work) => work.category.name === categorie);
+    }
+    genererWorks(filtered);
+  });
+});

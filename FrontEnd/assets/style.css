@@ -271,7 +271,7 @@ footer nav ul {
   justify-content: center;
   margin: 30px;
 }
-.filter-button {
+.btn-filter {
   border: solid 1px #1d6154;
   border-radius: 60px;
   background-color: transparent;
@@ -291,7 +291,7 @@ footer nav ul {
   white-space: nowrap;
 }
 
-.filter-button:hover {
+.btn-filter:hover {
   background-color: #1d6154;
   color: white;
 }
