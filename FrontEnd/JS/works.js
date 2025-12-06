@@ -1,8 +1,7 @@
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("works.json");
-const works = await reponse.json();
 
-function genererWorks(works) {
+async function genererWorks() {
+  const works = await getWorks();
   // Récupération de l'élément du DOM qui accueillera les gallery
   const sectionGallery = document.querySelector(".gallery");
   sectionGallery.innerHTML = "";
@@ -26,7 +25,7 @@ function genererWorks(works) {
   }
 }
 
-genererWorks(works);
+genererWorks();
 
 //Gestion des boutons filtres
 
