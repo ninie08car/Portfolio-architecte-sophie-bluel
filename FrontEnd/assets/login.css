@@ -4,6 +4,12 @@ form {
   align-items: center;
 }
 
+.login {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
 #login {
   width: 380px;
   margin: 100px auto 150px auto;
@@ -38,7 +44,9 @@ form {
 }
 #login label {
   margin: 20px 0 10px 0;
-  font-weight: 600;
+  font-family: "Work Sans";
+  font-weight: 550;
+  font-size: 14px;
   color: #3d3d3d;
   display: block;
 }
@@ -53,7 +61,7 @@ form {
   color: white;
   background-color: #1d6154;
   border: none;
-  margin: 16px auto;
+  margin: 30px auto 10px;
   width: 180px;
   height: 45px;
   text-align: center;
@@ -67,7 +75,7 @@ form {
   text-align: center;
   font-size: 0.9em;
   color: #3d3d3d;
-  text-decoration: none;
+  text-decoration: underline;
   margin-top: 10px;
 }
 

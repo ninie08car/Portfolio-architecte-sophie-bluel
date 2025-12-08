@@ -17,3 +17,12 @@ async function getCategories() {
   }
   return null;
 }
+
+async function postWorks() {
+  fetch(apiUrl + "/works", {
+    /* Objet de configuration */
+    method: "POST",
+    body: '{"commentaire":"Top produit !"}',
+    headers: { "Content-Type": "application/json" },
+  });
+}
