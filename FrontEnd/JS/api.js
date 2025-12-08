@@ -8,3 +8,12 @@ async function getWorks() {
   }
   return null;
 }
+
+async function getCategories() {
+  const response = await fetch(apiUrl + "/categories");
+  if (response.ok) {
+    const categories = await response.json();
+    return categories;
+  }
+  return null;
+}

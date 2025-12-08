@@ -2,57 +2,51 @@
 
 async function genererWorks() {
   const works = await getWorks();
-  // Récupération de l'élément du DOM qui accueillera les gallery
   const sectionGallery = document.querySelector(".gallery");
   sectionGallery.innerHTML = "";
   for (let i = 0; i < works.length; i++) {
     const article = works[i];
-    // Création d’une balise dédiée à une pièce automobile
     const worksElement = document.createElement("figure");
-    // Création des balises
     const imageElement = document.createElement("img");
     imageElement.src = article.imageUrl;
     imageElement.alt = article.title;
     const nomElement = document.createElement("figcaption");
     nomElement.innerText = article.title;
-
-    // On rattache la balise article a la section Gallery
     sectionGallery.appendChild(worksElement);
-
-    // On rattache l’image à pieceElement (la balise article)
     worksElement.appendChild(imageElement);
     worksElement.appendChild(nomElement);
   }
 }
-
 genererWorks();
 
-//Gestion des boutons filtres
+async function initFilters() {
+  const works = await getWorks();
+  const buttons = document.querySelectorAll(".btn-filter");
 
-// const boutonFiltrer = document.querySelector(".Objets");
-// boutonFiltrer.addEventListener("click", function () {
-//   const worksFiltrees = works.filter(function (works) {
-//     return works.categoryId === 1;
-//   });
-//   document.querySelector(".gallery").innerHTML = "";
-//   genererWorks(worksFiltrees);
-// });
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
 
-document.querySelectorAll(".btn-filter").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const categories = btn.classList;
-    let categorie = null;
-    categories.forEach((c) => {
-      if (c !== "btn-filter") {
-        categorie = c;
+      const categoryId = button.dataset.category;
+
+      if (categoryId === "all") {
+        displayWorks(works);
+        return;
       }
+
+      const filteredWorks = works.filter(
+        (work) => work.categoryId === Number(categoryId)
+      );
+
+      displayWorks(filteredWorks);
     });
-    let filtered;
-    if (categorie === "all") {
-      filtered = works;
-    } else {
-      filtered = works.filter((work) => work.category.name === categorie);
-    }
-    genererWorks(filtered);
   });
-});
+}
+
+async function init() {
+  const works = await getWorks();
+  displayWorks(works);
+  initFilters();
+}
+
+init();
