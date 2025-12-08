@@ -1,7 +1,7 @@
 // Récupération des pièces depuis le fichier JSON
 
-async function genererWorks() {
-  const works = await getWorks();
+async function genererWorks(listeWorks = null) {
+  const works = listeWorks || (await getWorks());
   const sectionGallery = document.querySelector(".gallery");
   sectionGallery.innerHTML = "";
   for (let i = 0; i < works.length; i++) {
@@ -19,34 +19,38 @@ async function genererWorks() {
 }
 genererWorks();
 
-async function initFilters() {
+function filtrerWorksParCategorie(works, categoryId) {
+  const worksFiltres = [];
+  for (let i = 0; i < works.length; i++) {
+    if (works[i].categoryId === categoryId) {
+      worksFiltres.push(works[i]);
+    }
+  }
+  genererWorks(worksFiltres);
+}
+
+async function genererFiltres() {
+  const categories = await getCategories();
+  const sectionCategory = document.querySelector(".filter-categorie");
+  sectionCategory.innerHTML = "";
   const works = await getWorks();
-  const buttons = document.querySelectorAll(".btn-filter");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      const categoryId = button.dataset.category;
-
-      if (categoryId === "all") {
-        displayWorks(works);
-        return;
-      }
-
-      const filteredWorks = works.filter(
-        (work) => work.categoryId === Number(categoryId)
-      );
-
-      displayWorks(filteredWorks);
-    });
+  const boutonTous = document.createElement("button");
+  boutonTous.textContent = "Tous";
+  boutonTous.classList.add("btn-filter");
+  boutonTous.addEventListener("click", () => {
+    genererWorks(works);
   });
+  sectionCategory.appendChild(boutonTous);
+  for (let i = 0; i < categories.length; i++) {
+    const cat = categories[i];
+    const catElement = document.createElement("button");
+    catElement.textContent = cat.name;
+    catElement.classList.add("btn-filter");
+    catElement.addEventListener("click", () => {
+      filtrerWorksParCategorie(works, cat.id);
+    });
+    sectionCategory.appendChild(catElement);
+  }
 }
-
-async function init() {
-  const works = await getWorks();
-  displayWorks(works);
-  initFilters();
-}
-
-init();
+genererFiltres();
