@@ -1,0 +1,45 @@
+index.html
+<h3>Ajouter un avis</h3>
+<form class="formulaire-avis">
+····Identifiant de la pièce :<br>
+····<input type="number" name="piece-id"><br>
+····Nom d'utilisateur :<br>
+····<input type="text" name="utilisateur"><br>
+····Avis :<br>
+····<input type="text" name="commentaire"><br>
+····<button>Envoyer</button>
+</form>
+
+avis.js
+export function ajoutListenerEnvoyerAvis() {
+   const formulaireAvis = document.querySelector(".formulaire-avis");
+   formulaireAvis.addEventListener("submit", function (event) {
+    // Désactivation du comportement par défaut du navigateur
+    event.preventDefault();
+    // Création de l’objet du nouvel avis.
+    const avis = {
+   pieceId: parseInt(event.target.querySelector("[name=piece-id]").value),
+   utilisateur: event.target.querySelector("[name=utilisateur").value,
+   commentaire: event.target.querySelector("[name=commentaire]").value,
+};
+// Création de la charge utile au format JSON
+const chargeUtile = JSON.stringify(avis);
+// Appel de la fonction fetch avec toutes les informations nécessaires
+fetch("http://localhost:8081/avis", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: chargeUtile
+});
+
+   });
+}
+
+pieces.js
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
+// Récupération des pièces depuis le fichier JSON
+const reponse = await fetch('http://localhost:8081/pieces/');
+const pieces = await reponse.json();
+// on appelle la fonction pour ajouter le listener au formulaire
+ajoutListenerEnvoyerAvis()
+
+

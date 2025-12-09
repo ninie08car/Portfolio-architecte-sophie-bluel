@@ -1,27 +1,23 @@
-// const form = document.querySelector(".login-form");
-// const emailInput = document.getElementById("email");
-// const passwordInput = document.getElementById("password");
+const form = document.getElementById("login-form");
+const errorMessage = document.getElementById("error-message");
 
-// form.addEventListener("submit", async (event) => {
-//   event.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  errorMessage.textContent = "";
 
-//   const user = {
-//     email: emailInput.value,
-//     password: passwordInput.value,
-//   };
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-//   const response = await fetch("http://localhost:5678/api/auth/login", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(user),
-//   });
+  try {
+    const data = await postLogin(email, password);
 
-//   const data = await response.json();
+    // ✅ connexion confirmée
+    localStorage.setItem("token", data.token);
 
-//   if (response.ok) {
-//     localStorage.setItem("token", data.token);
-//     window.location.href = "index.html";
-//   } else {
-//     alert("Email ou mot de passe incorrect");
-//   }
-// });
+    // ✅ redirection vers la page d’accueil
+    window.location.href = "/";
+  } catch (error) {
+    // ❌ affichage du message d’erreur
+    errorMessage.textContent = error.message;
+  }
+});

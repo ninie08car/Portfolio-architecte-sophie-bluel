@@ -18,11 +18,46 @@ async function getCategories() {
   return null;
 }
 
-async function postWorks() {
+async function postLogin(email, password) {
+  try {
+    const response = await fetch(apiUrl + "/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Erreur de connexion");
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message || "Impossible de contacter le serveur");
+  }
+}
+
+async function postWorks(image, title, category) {
   fetch(apiUrl + "/works", {
     /* Objet de configuration */
     method: "POST",
-    body: '{"commentaire":"Top produit !"}',
     headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      image: image,
+      title: title,
+      category: category,
+    }),
+  });
+}
+
+async function deleteWorks(id) {
+  fetch(apiUrl + "/works/{id}", {
+    /* Objet de configuration */
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: id,
+    }),
   });
 }
