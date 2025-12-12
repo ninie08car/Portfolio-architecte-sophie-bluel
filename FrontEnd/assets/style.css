@@ -317,20 +317,38 @@ footer nav ul {
   color: white;
 }
 
-.top-banner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.top-banner .index {
+  display: none;
   background-color: #000;
   color: #fff;
   text-align: center;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 300;
+}
+
+.top-banner .edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   gap: 10px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .top-banner .fa-regular {
   color: #fff;
   font-size: 1.2em;
+}
+
+.index {
+  display: none;
+}
+
+li .edit {
+  display: flex;
 }
