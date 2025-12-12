@@ -19,7 +19,7 @@ async function getCategories() {
 }
 
 async function postLogin(email, password) {
-  fetch(apiUrl + "/users/login", {
+  const response = await fetch(apiUrl + "/users/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -27,27 +27,12 @@ async function postLogin(email, password) {
       password: password,
     }),
   });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  return null;
 }
-
-// export async function postLogin(email, password) {
-//   try {
-//     const response = await fetch(apiUrl + "/users/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, password }),
-//     });
-
-//     if (!response.ok) {
-//       const err = await response.json();
-//       throw new Error(err.message || "Erreur de connexion");
-//     }
-
-//     return await response.json(); // Token ou user
-//   } catch (error) {
-//     console.error("postLogin error:", error.message);
-//     throw error;
-//   }
-// }
 
 async function postWorks(image, title, category) {
   fetch(apiUrl + "/works", {
