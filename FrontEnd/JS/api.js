@@ -29,6 +29,26 @@ async function postLogin(email, password) {
   });
 }
 
+// export async function postLogin(email, password) {
+//   try {
+//     const response = await fetch(apiUrl + "/users/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//     });
+
+//     if (!response.ok) {
+//       const err = await response.json();
+//       throw new Error(err.message || "Erreur de connexion");
+//     }
+
+//     return await response.json(); // Token ou user
+//   } catch (error) {
+//     console.error("postLogin error:", error.message);
+//     throw error;
+//   }
+// }
+
 async function postWorks(image, title, category) {
   fetch(apiUrl + "/works", {
     /* Objet de configuration */
