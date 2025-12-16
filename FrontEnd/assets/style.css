@@ -340,15 +340,28 @@ footer nav ul {
   font-weight: 300;
 }
 
-.top-banner .fa-regular {
-  color: #fff;
-  font-size: 1.2em;
-}
-
-.index {
-  display: none;
-}
-
-li .edit {
+.top-banner {
+  background: black;
   display: flex;
+  justify-content: center;
+  height: 59px;
+  align-items: center;
+  color: white;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.title-banner {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.modif .fa-pen-to-square {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
 }

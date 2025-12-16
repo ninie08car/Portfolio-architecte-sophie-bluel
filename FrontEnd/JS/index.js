@@ -54,3 +54,29 @@ async function genererFiltres() {
   }
 }
 genererFiltres();
+
+const token = localStorage.getItem("token");
+if (token) {
+  editMode();
+}
+
+function editMode() {
+  const topBanner = document.querySelector(".top-banner");
+  const loginLink = document.querySelector(".login");
+  const logoutLi = document.querySelector(".logout");
+  const filtres = document.querySelector(".filter-categorie");
+  const editProjet = document.querySelector(".modif");
+
+  topBanner.classList.remove("hidden");
+  loginLink.classList.add("hidden");
+  logoutLi.classList.remove("hidden");
+  filtres.classList.add("hidden");
+  editProjet.classList.remove("hidden");
+}
+
+const logoutLi = document.querySelector(".logout");
+
+logoutLi.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.reload();
+});

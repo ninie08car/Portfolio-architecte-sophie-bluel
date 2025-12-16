@@ -1,6 +1,5 @@
 const form = document.querySelector(".login-form");
 
-// let form = document.querySelector("form");
 let baliseEmail = document.getElementById("email");
 let balisePassword = document.getElementById("password");
 
@@ -46,11 +45,13 @@ async function submitForm(event) {
   event.preventDefault();
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
+
   const data = await postLogin(email, password);
-  if (data) {
+
+  if (data && data) {
     localStorage.setItem("token", data.token);
     window.location.href = "index.html";
   } else {
-    alert("error");
+    alert("Identifiants incorrects");
   }
 }
