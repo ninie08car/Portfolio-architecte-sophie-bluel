@@ -3,33 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./assets/modal.css" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="./JS/api.js"></script>
     <script src="./JS/index.js" defer></script>
-    <title>Modale</title>
+    <title>Modales</title>
   </head>
   <body>
     <a href="#modal1" class="js-modal">Ouvrir la boite modale</a>
     <aside
       id="modal1"
       class="modal"
-      aial-hidden="true"
+      aria-hidden="true"
       role="dialog"
       aria-label="titlemodal"
       style="display: none"
     >
       <div class="modal-wrapper js-modal-stop">
-        <button type="submit" class="js-modal-close">
-          <i class="fa-solid fa-xmark"></i>Fermer la boite modale
+        <button type="submit" class="js-modal-close" aria-label="Fermer">
+          <i class="fa-solid fa-xmark"></i>
         </button>
         <h1 id="titlemodal">Galerie Photos</h1>
         <div class="gallery">
           <div class="badge"><i class="fa-solid fa-trash-can"></i></div>
         </div>
-        <button type="submit" class="btn-filter">Ajouter une photo</button>
+        <button type="submit" class="btn-filter">
+          <a href="" class="modal-form"></a>Ajouter une photo
+        </button>
       </div>
     </aside>
+    <!-- <form action="#" method="dialog">
+      <i class="fa-solid fa-arrow-left"></i>
+      <i class="fa-solid fa-xmark"></i>
+      <div>
+        <i class="fa-solid fa-image"></i>
+        <button type="submit">+Ajouter photo</button>
+        <p>jpg. png : 4mo max</p>
+      </div>
+      <label for="title">Titre</label>
+      <input type="text" name="title" id="title" />
+      <label for="category">Catégorie</label>
+      <input type="text" name="category" id="category" />
+      <button type="submit" class="btn-filter">Valider</button>
+    </form> -->
     <script type="module" src="./JS/modal.js"></script>
   </body>
 </html>
