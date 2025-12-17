@@ -48,6 +48,11 @@ html {
   cursor: pointer;
 }
 
+.js-open-form {
+  display: block;
+  margin: 20px auto;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -55,10 +60,10 @@ html {
   margin-left: 100px;
   margin-right: 100px;
   padding-bottom: 20px;
-  border-bottom: 2px solid grey;
+  border-bottom: 1px solid #b3b3bb;
 }
 .photo {
-  position: relative; /* OBLIGATOIRE */
+  position: relative;
   overflow: hidden;
   border-radius: 8px;
 }

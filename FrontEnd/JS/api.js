@@ -34,6 +34,17 @@ async function postLogin(email, password) {
   return null;
 }
 
+async function deleteWorks(id) {
+  fetch(apiUrl + "/works/{id}", {
+    /* Objet de configuration */
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: id,
+    }),
+  });
+}
+
 async function postWorks(image, title, category) {
   fetch(apiUrl + "/works", {
     /* Objet de configuration */
@@ -43,17 +54,6 @@ async function postWorks(image, title, category) {
       image: image,
       title: title,
       category: category,
-    }),
-  });
-}
-
-async function deleteWorks(id) {
-  fetch(apiUrl + "/works/{id}", {
-    /* Objet de configuration */
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id: id,
     }),
   });
 }
