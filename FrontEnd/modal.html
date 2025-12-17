@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
     <link rel="stylesheet" href="./assets/modal.css" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="./JS/api.js"></script>
@@ -31,28 +29,87 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
         <h1 id="titlemodal">Galerie Photos</h1>
-        <div class="gallery">
-          <div class="badge"><i class="fa-solid fa-trash-can"></i></div>
+        <div class="gallery-grid">
+          <div class="photo">
+            <img src="/assets/images/abajour-tahina.png" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="photo"><img src="2.jpg" /></div>
+          <div class="photo"><img src="3.jpg" /></div>
+          <div class="photo"><img src="4.jpg" /></div>
+          <div class="photo"><img src="5.jpg" /></div>
         </div>
-        <button type="submit" class="btn-filter">
-          <a href="" class="modal-form"></a>Ajouter une photo
+        <button type="button" class="btn-filter js-open-form">
+          Ajouter une photo
         </button>
       </div>
     </aside>
-    <!-- <form action="#" method="dialog">
-      <i class="fa-solid fa-arrow-left"></i>
-      <i class="fa-solid fa-xmark"></i>
-      <div>
-        <i class="fa-solid fa-image"></i>
-        <button type="submit">+Ajouter photo</button>
-        <p>jpg. png : 4mo max</p>
+    <!-- Bouton pour ouvrir la galerie -->
+    <a href="#modal1" class="js-modal">Ouvrir la boîte modale</a>
+
+    <!-- Modale Galerie -->
+    <aside
+      id="modal1"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Galerie Photos"
+      style="display: none"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <button type="button" class="js-modal-close" aria-label="Fermer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h1 id="titlemodal">Galerie Photos</h1>
+        <div class="gallery-grid">
+          <div class="photo">
+            <img src="./assets/images/abajour-tahina.png" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="photo"><img src="./assets/images/2.jpg" /></div>
+          <div class="photo"><img src="./assets/images/3.jpg" /></div>
+          <div class="photo"><img src="./assets/images/4.jpg" /></div>
+          <div class="photo"><img src="./assets/images/5.jpg" /></div>
+        </div>
+        <button type="button" class="btn-filter js-open-form">
+          Ajouter une photo
+        </button>
       </div>
-      <label for="title">Titre</label>
-      <input type="text" name="title" id="title" />
-      <label for="category">Catégorie</label>
-      <input type="text" name="category" id="category" />
-      <button type="submit" class="btn-filter">Valider</button>
-    </form> -->
+    </aside>
+    <!-- Modale Formulaire -->
+    <aside
+      id="modal-form"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Ajouter Photo"
+      style="display: none"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <button type="button" class="js-modal-return" aria-label="Retour">
+          <i class="fa-solid fa-arrow-left js-close-form"></i>
+        </button>
+        <button type="button" class="js-modal-close" aria-label="Fermer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <form id="photo-form">
+          <div>
+            <i class="fa-solid fa-image"></i>
+            <button type="submit">+Ajouter photo</button>
+            <p>jpg, png : 4 Mo max</p>
+          </div>
+          <label for="title">Titre</label>
+          <input type="text" name="title" id="title" required />
+          <label for="category">Catégorie</label>
+          <input type="text" name="category" id="category" required />
+          <button type="submit" class="btn-filter">Valider</button>
+        </form>
+      </div>
+    </aside>
     <script type="module" src="./JS/modal.js"></script>
   </body>
 </html>
