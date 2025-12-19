@@ -1,0 +1,55 @@
+#photo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#photo-form > div:first-child {
+  background: #e8f1f5;
+  border-radius: 6px;
+  padding: 30px 10px;
+  text-align: center;
+}
+
+#photo-form i.fa-image {
+  font-size: 48px;
+  color: #b9c5cc;
+  margin-bottom: 10px;
+}
+
+#photo-form div button {
+  background: #cfe6ef;
+  color: #306685;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#photo-form div p {
+  font-size: 12px;
+  color: #777;
+  margin-top: 8px;
+}
+
+#photo-form label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#photo-form input {
+  height: 40px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 14px;
+}
+select {
+  height: 40px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0 10px;
+}

@@ -358,6 +358,11 @@ footer nav ul {
   align-items: baseline;
 }
 
+.modif {
+  display: flex;
+  gap: 5px;
+}
+
 .modif .fa-pen-to-square {
   font-size: 20px;
 }

@@ -48,3 +48,19 @@ async function genererPhotos(listeWorks = null) {
   sectionGallery.appendChild(fragment);
 }
 genererPhotos();
+
+const openFormBtn = document.querySelector(".js-open-form");
+const modalGallery = document.getElementById("modal1");
+const modalForm = document.getElementById("modal-form");
+
+openFormBtn.addEventListener("click", () => {
+  modalGallery.classList.add("hidden");
+  modalForm.classList.remove("hidden");
+});
+
+const returnBtn = document.querySelector(".js-modal-return");
+
+returnBtn.addEventListener("click", () => {
+  modalForm.classList.add("hidden");
+  modalGallery.classList.remove("hidden");
+});
