@@ -1,5 +1,3 @@
-// Récupération des pièces depuis le fichier JSON
-
 async function genererWorks(listeWorks = null) {
   const works = listeWorks || (await getWorks());
   const sectionGallery = document.querySelector(".gallery");
@@ -83,4 +81,12 @@ function editMode() {
     modal.classList.remove("hidden");
   });
   close.addEventListener("click", closeModal);
+}
+
+function addWorks() {
+  const addPictures = document.querySelector(".js-open-form");
+  addPictures.addEventListener("click", () => {
+    const form = document.querySelector("#modal-form");
+    form.classList.remove("hidden");
+  });
 }
