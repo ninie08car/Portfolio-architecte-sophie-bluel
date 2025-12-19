@@ -18,7 +18,9 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/modal.css" />
     <script src="./JS/api.js"></script>
+    <script src="./JS/modal.js" defer></script>
     <script src="./JS/index.js" defer></script>
   </head>
   <body>
@@ -93,5 +95,21 @@
         </ul>
       </nav>
     </footer>
+
+    <aside
+      id="modal1"
+      class="modal hidden"
+      role="dialog"
+      aria-label="Galerie Photos"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <button class="js-modal-close close" aria-label="Fermer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h1 id="titlemodal">Galerie Photos</h1>
+        <div class="gallery-grid"></div>
+        <button class="btn-filter js-open-form">Ajouter une photo</button>
+      </div>
+    </aside>
   </body>
 </html>

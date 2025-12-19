@@ -66,6 +66,7 @@ function editMode() {
   const logout = document.querySelector(".logout");
   const filtres = document.querySelector(".filter-categorie");
   const editProjet = document.querySelector(".modif");
+  const close = document.querySelector(".close");
 
   topBanner.classList.remove("hidden");
   login.classList.add("hidden");
@@ -77,4 +78,9 @@ function editMode() {
     localStorage.removeItem("token");
     window.location.reload();
   });
+  editProjet.addEventListener("click", () => {
+    const modal = document.querySelector("#modal1");
+    modal.classList.remove("hidden");
+  });
+  close.addEventListener("click", closeModal);
 }

@@ -362,6 +362,7 @@ footer nav ul {
   font-size: 20px;
 }
 
-.hidden {
+.hidden,
+.modal.hidden {
   display: none;
 }
