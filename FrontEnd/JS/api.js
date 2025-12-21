@@ -35,14 +35,16 @@ async function postLogin(email, password) {
 }
 
 async function deleteWorks(id) {
-  fetch(apiUrl + "/works/{id}", {
-    /* Objet de configuration */
+  const token = localStorage.getItem("token");
+  const response = await fetch(apiUrl + "/works/" + id, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id: id,
-    }),
+    headers: { Authorization: "Bearer " + token },
   });
+  if (response.ok) {
+    removeWorkFromDom(id);
+  } else {
+    console.error("Erreur lors de la suppression du projet");
+  }
 }
 
 async function postWorks(image, title, category) {

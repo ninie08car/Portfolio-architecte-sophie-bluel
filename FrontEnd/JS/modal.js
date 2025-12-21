@@ -24,10 +24,14 @@ async function genererPhotos(listeWorks = null) {
   const works = listeWorks || (await getWorks());
   const sectionGallery = document.querySelector(".gallery-grid");
   sectionGallery.innerHTML = "";
+
   const fragment = document.createDocumentFragment();
+
   for (let i = 0; i < works.length; i++) {
     const article = works[i];
+
     const workDiv = document.createElement("div");
+
     const imageElement = document.createElement("img");
     const deleteButton = document.createElement("button");
     const iconElement = document.createElement("i");
@@ -35,15 +39,21 @@ async function genererPhotos(listeWorks = null) {
     imageElement.src = article.imageUrl;
     imageElement.alt = article.title;
     imageElement.id = article.id;
+    workDiv.dataset.id = article.id;
 
     workDiv.classList.add("photo");
     deleteButton.classList.add("delete-btn");
     iconElement.classList.add("fa-solid", "fa-trash-can");
 
     deleteButton.appendChild(iconElement);
+
     workDiv.appendChild(imageElement);
     workDiv.appendChild(deleteButton);
     fragment.appendChild(workDiv);
+
+    deleteButton.addEventListener("click", async () => {
+      await deleteWorks(article.id);
+    });
   }
   sectionGallery.appendChild(fragment);
 }
@@ -64,3 +74,9 @@ returnBtn.addEventListener("click", () => {
   modalForm.classList.add("hidden");
   modalGallery.classList.remove("hidden");
 });
+
+function removeWorkFromDom(id) {
+  document
+    .querySelectorAll(`[data-id="` + id + `"]`)
+    .forEach((element) => element.remove());
+}
