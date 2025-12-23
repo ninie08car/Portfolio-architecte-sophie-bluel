@@ -48,14 +48,22 @@ async function deleteWorks(id) {
 }
 
 async function postWorks(image, title, category) {
-  fetch(apiUrl + "/works", {
-    /* Objet de configuration */
+  const formData = new FormData();
+  formData.append("image", image);
+  formData.append("title", title);
+  formData.append("category", category);
+
+  const response = await fetch(apiUrl + "/works", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      image: image,
-      title: title,
-      category: category,
-    }),
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error("Erreur lors de l'envoi de l'image");
+  }
+
+  return await response.json();
 }

@@ -1,10 +1,15 @@
-const closeModal = function (e) {
-  const modals = document.querySelectorAll(".modal");
-  for (let i = 0; i < modals.length; i++) {
-    const modal = modals[i];
+const closeModal = function () {
+  document.querySelectorAll(".modal").forEach((modal) => {
     modal.classList.add("hidden");
-  }
+  });
 };
+
+document.querySelectorAll(".js-modal-close").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeModal();
+  });
+});
 
 const stopPropagation = function (e) {
   e.stopPropagation();
@@ -80,3 +85,41 @@ function removeWorkFromDom(id) {
     .querySelectorAll(`[data-id="` + id + `"]`)
     .forEach((element) => element.remove());
 }
+
+const uploadBtn = document.getElementById("btn-upload");
+const fileInput = document.getElementById("image");
+const previewContainer = document.querySelector("#photo-form > div");
+
+uploadBtn.addEventListener("click", () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  // Validation type
+  if (!["image/jpeg", "image/png"].includes(file.type)) {
+    alert("Seuls les fichiers JPG ou PNG sont acceptés");
+    fileInput.value = "";
+    return;
+  }
+
+  // Validation taille (4 Mo)
+  if (file.size > 4 * 1024 * 1024) {
+    alert("Image trop lourde (4 Mo max)");
+    fileInput.value = "";
+    return;
+  }
+
+  // Nettoyage zone
+  previewContainer.innerHTML = "";
+
+  // Création preview
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  img.style.maxHeight = "170px";
+  img.style.objectFit = "cover";
+
+  previewContainer.appendChild(img);
+});
