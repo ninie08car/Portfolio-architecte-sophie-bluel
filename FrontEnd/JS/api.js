@@ -47,13 +47,8 @@ async function deleteWorks(id) {
   }
 }
 
-async function postWorks(image, title, category) {
-  const formData = new FormData();
-  formData.append("image", image);
-  formData.append("title", title);
-  formData.append("category", category);
-
-  const response = await fetch(apiUrl + "/works", {
+async function createWorkApi(formData) {
+  const response = await fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
@@ -62,7 +57,7 @@ async function postWorks(image, title, category) {
   });
 
   if (!response.ok) {
-    throw new Error("Erreur lors de l'envoi de l'image");
+    return null;
   }
 
   return await response.json();

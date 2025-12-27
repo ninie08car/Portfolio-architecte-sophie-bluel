@@ -84,5 +84,9 @@ form {
 }
 
 .error {
-  background: red;
+  background-color: #fdecea;
+  color: #a33a2b;
+  border-left: 4px solid #e57373;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
