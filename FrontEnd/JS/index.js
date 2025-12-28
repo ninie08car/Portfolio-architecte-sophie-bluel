@@ -90,3 +90,21 @@ function addWorks() {
     form.classList.remove("hidden");
   });
 }
+
+function addWorkToGallery(work) {
+  const gallery = document.querySelector(".gallery");
+
+  const figure = document.createElement("figure");
+  figure.setAttribute("data-id", work.id);
+
+  const img = document.createElement("img");
+  img.src = work.imageUrl;
+  img.alt = work.title;
+
+  const figcaption = document.createElement("figcaption");
+  figcaption.textContent = work.title;
+
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+  gallery.appendChild(figure);
+}

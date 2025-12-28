@@ -47,11 +47,12 @@ async function deleteWorks(id) {
   }
 }
 
-async function createWorkApi(formData) {
-  const response = await fetch("http://localhost:5678/api/works", {
+async function createWork(formData) {
+  const token = localStorage.getItem("token");
+  const response = await fetch(apiUrl + "/works/", {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization: "Bearer " + token,
     },
     body: formData,
   });
