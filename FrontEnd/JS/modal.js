@@ -152,7 +152,7 @@ if (form) {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
-    formData.append("category", category);
+    formData.append("category", Number(category));
 
     const newWork = await createWork(formData);
 
@@ -161,8 +161,9 @@ if (form) {
       return;
     }
 
-    addWorkToGallery(newWork);
+    genererPhotos();
     form.reset();
-    closeModal();
+    closeModal(modalForm);
+    openModal(modal1);
   });
 }
