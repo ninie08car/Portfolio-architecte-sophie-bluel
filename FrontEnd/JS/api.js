@@ -51,9 +51,7 @@ async function createWork(formData) {
   const token = localStorage.getItem("token");
   const response = await fetch(apiUrl + "/works/", {
     method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
+    headers: { Authorization: "Bearer " + token },
     body: formData,
   });
 

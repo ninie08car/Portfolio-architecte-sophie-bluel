@@ -5,10 +5,12 @@ const btnReturn = document.querySelector(".js-modal-return");
 const photoForm = document.getElementById("photo-form");
 
 function closeModal(modal) {
+  if (!modal) return;
   modal.classList.add("hidden");
 }
 
 function openModal(modal) {
+  if (!modal) return;
   modal.classList.remove("hidden");
 }
 
@@ -75,6 +77,12 @@ async function genererPhotos(listeWorks = null) {
     fragment.appendChild(workDiv);
 
     deleteButton.addEventListener("click", async () => {
+      const confirmed = confirm(
+        "Êtes-vous sûr de vouloir supprimer ce projet ?"
+      );
+      if (!confirmed) {
+        e.preventDefault();
+      }
       await deleteWorks(article.id);
     });
   }
@@ -92,7 +100,9 @@ function removeWorkFromDom(id) {
 const btnUpload = document.getElementById("btn-upload");
 const imageInput = document.getElementById("image");
 const uploadDiv = btnUpload.parentElement;
-
+const elementsToHide = uploadDiv.querySelectorAll(
+  ".fa-image, .text, #btn-upload"
+);
 btnUpload.addEventListener("click", () => {
   imageInput.click();
 });
@@ -100,7 +110,6 @@ btnUpload.addEventListener("click", () => {
 imageInput.addEventListener("change", () => {
   const file = imageInput.files[0];
   if (!file) return;
-
   const validTypes = ["image/jpeg", "image/png"];
   const maxSize = 4 * 1024 * 1024; // 4 Mo
 
@@ -116,18 +125,16 @@ imageInput.addEventListener("change", () => {
     return;
   }
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    uploadDiv.innerHTML = "";
-    const img = document.createElement("img");
-    img.src = e.target.result;
-    img.style.width = "100%";
-    img.style.borderRadius = "5px";
-    img.style.marginTop = "10px";
+  elementsToHide.forEach((el) => (el.style.display = "none"));
 
-    uploadDiv.appendChild(img);
-  };
-  reader.readAsDataURL(file);
+  let preview = uploadDiv.querySelector("img");
+  if (!preview) {
+    preview = document.createElement("img");
+    uploadDiv.appendChild(preview);
+  }
+  preview.src = URL.createObjectURL(file);
+  preview.style.width = "100%";
+  preview.style.borderRadius = "5px";
 });
 
 //Ajout projet
@@ -137,9 +144,10 @@ if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const imageInput = document.getElementById("image");
-    if (!imageInput) return;
+    const confirmed = confirm("Confirmer l'ajout de ce projet ?");
+    if (!confirmed) return;
 
+    const imageInput = document.getElementById("image");
     const image = imageInput.files[0];
     const title = document.getElementById("title").value;
     const category = document.getElementById("category").value;
@@ -155,15 +163,15 @@ if (form) {
     formData.append("category", Number(category));
 
     const newWork = await createWork(formData);
-
     if (!newWork) {
       alert("Erreur lors de l'ajout du projet");
       return;
     }
 
+    addWorkToGallery(newWork);
     genererPhotos();
+
     form.reset();
     closeModal(modalForm);
-    openModal(modal1);
   });
 }
