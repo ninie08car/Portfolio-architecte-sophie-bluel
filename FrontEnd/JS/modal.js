@@ -84,6 +84,8 @@ async function genererPhotos(listeWorks = null) {
         e.preventDefault();
       }
       await deleteWorks(article.id);
+      closeModal(modal1);
+      genererWorks();
     });
   }
   sectionGallery.appendChild(fragment);
@@ -170,8 +172,24 @@ if (form) {
 
     addWorkToGallery(newWork);
     genererPhotos();
-
     form.reset();
+    resetImageInput();
     closeModal(modalForm);
+  });
+}
+
+function resetImageInput() {
+  const imageInput = document.getElementById("image");
+  const uploadDiv = document.getElementById("btn-upload").parentElement;
+  imageInput.value = "";
+  const preview = uploadDiv.querySelector("img");
+  if (preview) {
+    preview.remove();
+  }
+  const elementsToShow = uploadDiv.querySelectorAll(
+    ".fa-image, .text, #btn-upload"
+  );
+  elementsToShow.forEach((el) => {
+    el.style.display = "";
   });
 }
