@@ -143,6 +143,17 @@ imageInput.addEventListener("change", () => {
 const form = document.getElementById("photo-form");
 
 if (form) {
+  const submitBtn = document.getElementById("btn-submit");
+  submitBtn.disabled = true;
+
+  function checkFormValidity() {
+    const image = document.getElementById("image").files.length > 0;
+    const title = document.getElementById("title").value.trim() !== "";
+    const category = document.getElementById("category").value !== "";
+    submitBtn.disabled = !(image && title && category);
+  }
+  form.addEventListener("change", checkFormValidity);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -173,6 +184,7 @@ if (form) {
     addWorkToGallery(newWork);
     genererPhotos();
     form.reset();
+    submitBtn.disabled = true;
     resetImageInput();
     closeModal(modalForm);
   });

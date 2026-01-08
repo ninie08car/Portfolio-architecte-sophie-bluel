@@ -35,7 +35,7 @@ async function postLogin(email, password) {
 }
 
 async function deleteWorks(id) {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const response = await fetch(apiUrl + "/works/" + id, {
     method: "DELETE",
     headers: { Authorization: "Bearer " + token },
@@ -48,7 +48,7 @@ async function deleteWorks(id) {
 }
 
 async function createWork(formData) {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const response = await fetch(apiUrl + "/works/", {
     method: "POST",
     headers: { Authorization: "Bearer " + token },

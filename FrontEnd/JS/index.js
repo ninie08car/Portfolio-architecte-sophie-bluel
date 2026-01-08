@@ -53,7 +53,7 @@ async function genererFiltres() {
 }
 genererFiltres();
 
-const token = localStorage.getItem("token");
+const token = sessionStorage.getItem("token");
 if (token) {
   editMode();
 }
@@ -73,7 +73,7 @@ function editMode() {
   editProjet.classList.remove("hidden");
 
   logout.addEventListener("click", () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     window.location.reload();
   });
   editProjet.addEventListener("click", () => {

@@ -49,7 +49,7 @@ async function submitForm(event) {
   const data = await postLogin(email, password);
 
   if (data && data) {
-    localStorage.setItem("token", data.token);
+    sessionStorage.setItem("token", data.token);
     window.location.href = "index.html";
   } else {
     alert("Identifiants incorrects");
