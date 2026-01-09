@@ -27,6 +27,12 @@ function filtrerWorksParCategorie(works, categoryId) {
   genererWorks(worksFiltres);
 }
 
+function setActiveButton(clickedButton) {
+  const buttons = document.querySelectorAll(".btn-filter");
+  buttons.forEach((button) => button.classList.remove("active"));
+  clickedButton.classList.add("active");
+}
+
 async function genererFiltres() {
   const categories = await getCategories();
   const sectionCategory = document.querySelector(".filter-categorie");
@@ -35,21 +41,24 @@ async function genererFiltres() {
 
   const boutonTous = document.createElement("button");
   boutonTous.textContent = "Tous";
-  boutonTous.classList.add("btn-filter");
+  boutonTous.classList.add("btn-filter", "active");
   boutonTous.addEventListener("click", () => {
     genererWorks(works);
+    setActiveButton(boutonTous);
   });
   sectionCategory.appendChild(boutonTous);
-  for (let i = 0; i < categories.length; i++) {
-    const cat = categories[i];
-    const catElement = document.createElement("button");
-    catElement.textContent = cat.name;
-    catElement.classList.add("btn-filter");
-    catElement.addEventListener("click", () => {
+
+  categories.forEach((cat) => {
+    const btn = document.createElement("button");
+    btn.textContent = cat.name;
+    btn.classList.add("btn-filter");
+    btn.addEventListener("click", () => {
       filtrerWorksParCategorie(works, cat.id);
+      setActiveButton(btn);
     });
-    sectionCategory.appendChild(catElement);
-  }
+
+    sectionCategory.appendChild(btn);
+  });
 }
 genererFiltres();
 

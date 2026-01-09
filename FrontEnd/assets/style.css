@@ -292,6 +292,12 @@ footer nav ul {
   justify-content: center;
   margin: 30px;
 }
+
+#btn-submit:disabled {
+  background-color: #a7a7a7;
+  color: white;
+}
+
 .btn-filter {
   border: solid 1px #1d6154;
   border-radius: 60px;
@@ -312,7 +318,8 @@ footer nav ul {
   white-space: nowrap;
 }
 
-.btn-filter:hover {
+.btn-filter:hover,
+.btn-filter.active {
   background-color: #1d6154;
   color: white;
 }
